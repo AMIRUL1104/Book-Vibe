@@ -1,7 +1,7 @@
 import { NavLink } from "react-router";
 function Header() {
   return (
-    <header className="max-w-360 mx-auto mb-5">
+    <header className="max-w-360 mx-auto mb-5 sticky top-0 z-10">
       <div className="navbar bg-base-100 shadow-sm flex items-center justify-evenly">
         <div className="navbar-start">
           <div className="dropdown sm:hidden ">

@@ -1,9 +1,24 @@
+import { useNavigate } from "react-router";
 import star from "../../../assets/star.png";
 
 function Book({ book }) {
+  const navigate = useNavigate();
+
+  const handleBookDetails = (e) => {
+    // let polishName = name.replace(/\s+/g, "-").toLowerCase(); // Replace spaces with hyphens and convert to lowercase
+    // const encodedName = encodeURIComponent(polishName); // Encode the name for URL
+    const id = e.currentTarget.id;
+    console.log(id);
+
+    // console.log(encodedName);
+
+    navigate(`/book-details/${id}`);
+  };
+
   return (
     <div
       id={book.bookId}
+      onClick={handleBookDetails}
       className="card hover:shadow-lg shadow-slate-700 transition duration-150 px-10 shadow-sm border border-slate-500 py-6 "
     >
       <figure className="px-16 py-8 max-w-96 h-64 bg-slate-800  mx-auto flex items-center justify-center">
