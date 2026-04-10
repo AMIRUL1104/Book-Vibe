@@ -24,9 +24,9 @@ function BookDetails() {
       toast.error("Book already in wishlist", {
         position: "top-right",
         autoClose: 2000,
-        hideProgressBar: false,
+        hideProgressBar: true,
         closeOnClick: false,
-        pauseOnHover: true,
+        pauseOnHover: false,
         draggable: true,
         progress: undefined,
         theme: "dark",
