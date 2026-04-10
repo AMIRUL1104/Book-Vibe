@@ -1,8 +1,6 @@
 import WishList from "./WishList";
 
 function ListedBooks() {
-  // const { wishbooks } = useContext(WishListContext);
-
   return (
     <section className="max-w-360 mx-auto mb-5  flex max-lg:flex-col items-center justify-evenly max-sm:gap-7">
       <div className="w-full">
@@ -57,7 +55,7 @@ function ListedBooks() {
             name="my_tabs_3"
             className="tab"
             aria-label="WishList"
-            defaultCheckeds
+            defaultChecked
           />
           <div className="tab-content bg-base-100 border-base-300 p-6">
             <WishList />

@@ -27,26 +27,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/pages-to-read",
+        loader: () => fetch("/data/booksData.json"),
         Component: PagesToRead,
       },
       {
-        // path: "/book-details/:bookId",
-        // loader: async ({ params }) => {
-        //   // ১. params থেকে নির্দিষ্ট মানটি বের করে আনা
-        //   const { bookId } = params;
-
-        //   const res = await fetch("/public/data/booksData.json");
-        //   const data = await res.json();
-
-        //   // ২. params এর মান দিয়ে ডাটা ফিল্টার করা
-        //   const book = data.find((b) => b.bookId === bookId);
-
-        //   if (!book) {
-        //     throw new Response("Book not found", { status: 404 });
-        //   }
-
-        //   return book; // ৩. অবশ্যই ডাটা রিটার্ন করতে হবে
-        // },
         // ১. পাথটি ঠিক করুন (আপনার পছন্দমতো)
         path: "/book-details/:id",
         loader: async ({ params }) => {

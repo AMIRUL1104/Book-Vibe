@@ -5,12 +5,9 @@ function Book({ book }) {
   const navigate = useNavigate();
 
   const handleBookDetails = (e) => {
-    // let polishName = name.replace(/\s+/g, "-").toLowerCase(); // Replace spaces with hyphens and convert to lowercase
-    // const encodedName = encodeURIComponent(polishName); // Encode the name for URL
-    const id = e.currentTarget.id;
+       const id = e.currentTarget.id;
     // console.log(id);
 
-    // console.log(encodedName);
 
     navigate(`/book-details/${id}`);
   };

@@ -1,17 +1,13 @@
 import { useLoaderData } from "react-router";
 import { useContext } from "react";
 import { WishListContext } from "../WishListContext";
-// import { useGetWishBooks } from "../hooks/useGetWishBooks";
 
 // reacrt tostify
 import { toast } from "react-toastify";
 
 function BookDetails() {
-  // const getWishBooks = useGetWishBooks("wishBooks");
-
   const { wishBooks, setWishBooks } = useContext(WishListContext);
   const data = useLoaderData();
-  console.log(wishBooks);
 
   const handleAddWishlist = async (e) => {
     const id = e.target.id;
@@ -43,6 +39,16 @@ function BookDetails() {
     if (wishBook) {
       const updatedWishBooks = [...wishBooks, wishBook];
       setWishBooks(updatedWishBooks);
+      toast.success("Book added to wishlist", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 

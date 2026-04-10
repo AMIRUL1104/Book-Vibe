@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     localStorage.setItem("wishBooks", JSON.stringify(wishBooks));
   }, [wishBooks]);
-
   return (
     <>
       <Header />
