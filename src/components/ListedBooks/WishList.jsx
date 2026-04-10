@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { WishListContext } from "../WishListContext";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 function WishList() {
   const { wishBooks, setWishBooks } = useContext(WishListContext);
   const navigate = useNavigate();
@@ -10,6 +11,22 @@ function WishList() {
 
     navigate(`/book-details/${id}`);
   };
+
+  const handleRemoveBook = (e) => {
+    const id = e.target.id;
+    setWishBooks(wishBooks.filter((book) => book.bookId !== parseInt(id)));
+    toast.success("Book removed from wishlist", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+    });
+  };
+
   return (
     <>
       {wishBooks.length === 0 ? (
@@ -80,11 +97,8 @@ function WishList() {
                     View Details
                   </button>
                   <button
-                    onClick={() =>
-                      setWishBooks(
-                        wishBooks.filter((_, id) => id !== book.bookId),
-                      )
-                    }
+                    id={book.bookId}
+                    onClick={handleRemoveBook}
                     className="btn btn-sm sm:btn-md btn-secondary w-full sm:w-auto rounded-full capitalize"
                   >
                     Remove

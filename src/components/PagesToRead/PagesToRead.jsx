@@ -14,7 +14,7 @@ function PagesToRead() {
     const sortedBooks = [...books].sort((a, b) => b.totalPages - a.totalPages);
     setBooks(sortedBooks);
   };
-  console.log(books);
+  // console.log(books);
 
   const handleSmallestPage = () => {
     const sortedBooks = [...books].sort((a, b) => a.totalPages - b.totalPages);
