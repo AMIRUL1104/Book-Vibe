@@ -1,8 +1,50 @@
 import { useLoaderData } from "react-router";
+import { useContext } from "react";
+import { WishListContext } from "../WishListContext";
+// import { useGetWishBooks } from "../hooks/useGetWishBooks";
+
+// reacrt tostify
+import { toast } from "react-toastify";
 
 function BookDetails() {
-  // const params = useParams();
+  // const getWishBooks = useGetWishBooks("wishBooks");
+
+  const { wishBooks, setWishBooks } = useContext(WishListContext);
   const data = useLoaderData();
+  console.log(wishBooks);
+
+  const handleAddWishlist = async (e) => {
+    const id = e.target.id;
+
+    const checkExist = wishBooks.find(
+      (book) => parseInt(book.bookId) === parseInt(id),
+    );
+    if (checkExist) {
+      toast.error();
+      toast.error("Book already in wishlist", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+
+    const response = await fetch("/public/data/booksData.json");
+    const booksdata = await response.json();
+
+    const wishBook = booksdata.find(
+      (book) => parseInt(book.bookId) === parseInt(id),
+    );
+    if (wishBook) {
+      const updatedWishBooks = [...wishBooks, wishBook];
+      setWishBooks(updatedWishBooks);
+    }
+  };
 
   return (
     <section className="max-w-360 mx-auto mb-5  flex max-lg:flex-col items-center justify-evenly max-sm:gap-7">
@@ -10,7 +52,7 @@ function BookDetails() {
 
       <div className="hover-3d">
         {/* content */}
-        <figure className="max-w-100 rounded-2xl ">
+        <figure className="max-w-100 max-sm:mx-4 rounded-2xl ">
           <img src={data.image} alt="3D  image" />
         </figure>
         {/* 8 empty divs needed for the 3D effect */}
@@ -83,7 +125,11 @@ function BookDetails() {
           </button>
 
           {/* wishlist button */}
-          <button className="btn btn-primary capitalize ml-4 hover:scale-105 transition duration-150">
+          <button
+            id={data.bookId}
+            onClick={handleAddWishlist}
+            className="btn btn-primary capitalize ml-4 hover:scale-105 transition duration-150"
+          >
             Add to Wishlist
           </button>
         </div>
